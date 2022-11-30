@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Col, ListGroup, Row } from 'react-bootstrap';
+import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getProductsThunk } from '../store/slices/products.slice';
@@ -22,24 +22,51 @@ const ProductDetails = () => {
     dispatch(getProductsThunk());
   }, [])
 
+  const [quantity, setQuantity] = useState('')
+ 
+  const addToCart = () => {
+    const cartProducts = {
+      id: productSelected.id,
+      quantity: quantity
+    }
+    console.log(cartProducts);
+  }
+
   return (
     <div>
-      <h1>{productSelected?.title}</h1>
       <Row>
         <Col lg={9}>
-          <img src={productSelected?.productImgs[0]} className='img-fluid' alt="" />
-          <br /><br /><br />
-          <h3>${productSelected?.price}</h3>
+          <Card>
+            <Card.Body>
+              <Card.Title><h1>{productSelected?.title}</h1></Card.Title>
+              <br />
+              <Card.Text>
+                <img src={productSelected?.productImgs[0]} className='img-fluid' style={{ width: '100%', aspectRatio: '3/2', objectFit: 'contain' }} />
+                <br /><br /><br />
+                <p>{productSelected?.description}</p>
+                <br />
+                <h5>${productSelected?.price}</h5>
+              </Card.Text>
+              <input type="text" value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
+              <Button
+                variant="primary"
+                onClick={() => addToCart()}
+              >
+                <i className="fa-solid fa-cart-shopping"></i>
+              </Button>
+            </Card.Body>
+          </Card>
         </Col>
         <Col lg={3}>
+          <h4>Related products</h4>
           <ListGroup variant="flush">
             {relatedProducts.map((product) => (
               <Link to={`/products/${product.id}`} key={product.id}>
                 <ListGroup.Item>
                   {product.title}
-                  <br />
-                  <img src={product.productImgs?.[0]} style={{ width: '150px' }} alt="" className='img-fluid' />
-                  <br />
+                  <br /><br />
+                  <img src={product.productImgs?.[0]} style={{ width: '100%', height: '200px', aspectRatio: '3/2', objectFit: 'contain' }} alt="" className='img-fluid' />
+                  <br /><br />
                   ${product.price}
                   <br /><br />
                 </ListGroup.Item>

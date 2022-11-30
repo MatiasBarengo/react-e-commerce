@@ -14,6 +14,8 @@ const Purchases = () => {
     dispatch(getPurchasesThunk())
   }, [])
 
+  console.log(purchases);
+
   return (
     <div>
       <h2>My puerchases</h2>
@@ -26,7 +28,7 @@ const Purchases = () => {
                 <Link to={`/products/${product.id}`}>
                   <Card.Body key={product.id}>
                     <h4>{product.title}</h4>
-                    <h4>{product.price}</h4>
+                    <h4>${product.price}</h4>
                   </Card.Body>
                 </Link>
               ))

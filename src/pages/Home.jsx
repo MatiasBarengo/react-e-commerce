@@ -71,14 +71,14 @@ const Home = () => {
               <Col key={product.id}>
                 <Card >
                   <Link to={`/products/${product.id}`} style={{ textDecoration: 'none' }} >
-                    {/* <div style={{ width: '200px'}}   */}
                     <Card.Img
                       variant="top"
                       src={product.productImgs?.[0]}
-                      className='img-fluid'/>
-                    {/* </div> */}
+                      className='img-fluid'
+                      style={{width: '15vw',height: '200px', aspectRatio: '3/2', objectFit: 'contain'}}
+                      />
                     <Card.Body>
-                      <Card.Title>{product.title}</Card.Title>
+                      <Card.Title><h6>{product.title}</h6></Card.Title>
                       <Card.Text>
                         ${product.price}
                       </Card.Text>
