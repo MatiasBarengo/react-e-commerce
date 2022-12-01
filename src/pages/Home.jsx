@@ -84,9 +84,6 @@ const Home = () => {
                       </Card.Text>
                     </Card.Body>
                   </Link>
-                  <Button onClick={() => addToCart()}>
-                    <i className="fa-solid fa-cart-shopping"></i>
-                  </Button>
                 </Card>
               </Col>
             ))}
