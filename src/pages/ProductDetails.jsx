@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { addToCartThunk } from '../store/slices/cart.slice';
 import { getProductsThunk } from '../store/slices/products.slice';
 
 const ProductDetails = () => {
@@ -29,7 +30,7 @@ const ProductDetails = () => {
       id: productSelected.id,
       quantity: quantity
     }
-    console.log(cartProducts);
+    dispatch(addToCartThunk(cartProducts))
   }
 
   return (

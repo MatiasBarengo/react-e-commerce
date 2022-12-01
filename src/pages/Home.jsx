@@ -69,13 +69,13 @@ const Home = () => {
           <Row xs={1} md={2} lg={3} className="g-4">
             {products?.map((product) => (
               <Col key={product.id}>
-                <Card >
+                <Card style={{heigth: '300px'}}>
                   <Link to={`/products/${product.id}`} style={{ textDecoration: 'none' }} >
                     <Card.Img
                       variant="top"
                       src={product.productImgs?.[0]}
                       className='img-fluid'
-                      style={{width: '15vw',height: '200px', aspectRatio: '3/2', objectFit: 'contain'}}
+                      style={{width: '100%',height: '200px', aspectRatio: '3/2', objectFit: 'contain'}}
                       />
                     <Card.Body>
                       <Card.Title><h6>{product.title}</h6></Card.Title>

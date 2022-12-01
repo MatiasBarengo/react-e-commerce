@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Offcanvas } from 'react-bootstrap';
+import { Button, Offcanvas } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartThunk } from '../store/slices/cart.slice';
+import { checkoutCartThunk, getCartThunk } from '../store/slices/cart.slice';
 
 const CartBar = ({show, handleClose}) => {
 
@@ -27,10 +27,11 @@ const CartBar = ({show, handleClose}) => {
               <h5 style={{marginTop: '1rem'}}>{product.title}</h5>
               <p>$ {product.price}</p>
               <p>cant: {product.productsInCart.quantity}</p>
-              <div style={{width: '100%', height: '1px', background: 'grey'}}></div>
+              <div style={{width: '100%', height: '1px', background: '#d3d3d3'}}></div>
             </div>
           ))
         }
+        <Button onClick={() => dispatch(checkoutCartThunk())}>Checkout</Button>
       </Offcanvas.Body>
     </Offcanvas>
   );
